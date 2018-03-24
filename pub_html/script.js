@@ -18,18 +18,22 @@ const app = new Vue({
         alert('Incorrect credentials!');
       }
     },
-    openCheckin: function(){
+    openCheckin: function() {
       //send checkString to server
-      $.ajax({
-        method: 'post',
-        url: '/start',
-        data: {string:app.checkString},
-        success: function(data){
-          alert(data);
-        }
-      });
+      if (app.checkString !== '') {
+        $.ajax({
+          method: 'post',
+          url: '/start',
+          data: {string: app.checkString},
+          success: function (data) {
+            alert(data);
+          }
+        });
 
-      app.show='checkin-open';
+        app.show = 'checkin-open';
+      }else{
+        alert('Please enter a check-in string');
+      }
     },
     studentCheckin: function(){
       app.show='check-in';
