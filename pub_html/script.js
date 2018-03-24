@@ -33,6 +33,9 @@ const app = new Vue({
     },
     studentCheckin: function(){
       app.show='check-in';
+      app.userString = '';
+      app.name = '';
+      app.id = '';
     },
     openThankYou: function(){
       if(app.userString==='' || app.name==='' || app.id===''){
@@ -76,7 +79,7 @@ const app = new Vue({
           //create history table here
           let trHTML = '';
           $.each(JSON.parse(data), function (i, item) {
-            trHTML += '<tr><td>' + item.name + '</td></tr>';
+            trHTML += '<tr><th>' + item.name + '</th></tr>';
             $.each(item.users, function (j, newItem) {
               trHTML += '<tr><td>' + newItem.studName + '</td><td>' + newItem.studNum + '</td></tr>';
             });
@@ -85,6 +88,15 @@ const app = new Vue({
         }
       });
       app.show = 'history';
+    },
+    logout: function () {
+      app.show = 'login';
+      app.user = '';
+      app.PIN = '';
+    },
+    backLanding: function () {
+      app.show = 'landing';
+      app.checkString = '';
     }
   }
 });

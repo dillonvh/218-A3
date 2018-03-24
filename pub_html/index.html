@@ -38,6 +38,7 @@
                         <input type="text" v-model="checkString">
                         <button v-on:click="openCheckin">Start Check-in</button>
                         <button v-on:click="viewHistory">View History</button>
+                        <button v-on:click="logout">Logout</button>
                     </div>
                 </div>
             </div>
@@ -78,6 +79,7 @@
                         <input type="text" v-model="id">
                     </div>
                     <button v-on:click="openThankYou">Check-in</button>
+                    <button v-on:click="logout">Back to Login</button>
                 </div>
             </div>
         </div>
@@ -87,16 +89,21 @@
         <div>
             <h1>Thank you for checking in!</h1>
         </div>
+        <div>
+            <button v-on:click="logout">Back to Login</button>
+            <button v-on:click="studentCheckin">Back to Check-in</button>
+        </div>
     </section>
 
     <section class="bigger" v-if="show == 'stopped'">
         <div>
             <h1>Check-in is now over.</h1>
         </div>
+        <button v-on:click="backLanding">Back to Landing</button>
         <div id="sum">Total Checked-in Users: {{totalCount}}</div>
         <br>
         <table id="records">
-            <tr><th>All Checked-in Users</th></tr>
+            <tr><th align="left">Users</th></tr>
         </table>
     </section>
 
@@ -104,6 +111,7 @@
         <div>
             <h3>History of all Check-in's</h3>
         </div>
+        <button v-on:click="backLanding">Back to Landing</button>
         <table id="histTable">
         </table>
     </section>

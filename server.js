@@ -38,10 +38,10 @@ const CheckIn = mongoose.model('CheckIn', checkString);
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //all request below this
-app.use('/', function(req,res,next){
-  console.log(req.method, 'request:', req.url, JSON.stringify(req.body));
-  next();
-});
+// app.use('/', function(req,res,next){
+//   console.log(req.method, 'request:', req.url, JSON.stringify(req.body));
+//   next();
+// });
 
 app.use('/', express.static('./pub_html', options));
 
@@ -97,7 +97,6 @@ app.get('/history', function(req,res){
 
   CheckIn.find({}, 'name users', function (err, docs) {
     if(err) throw(err);
-    console.log(JSON.stringify(docs));
     res.send(JSON.stringify(docs));
   });
 });
