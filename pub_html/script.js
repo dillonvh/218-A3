@@ -1,4 +1,4 @@
-const app = new Vue({
+var app = new Vue({
   el: '#app',
   data: {
     totalCount: '',
@@ -64,7 +64,7 @@ const app = new Vue({
         url: '/stop',
         data: {string:app.checkString},
         success: function (data) {
-          let trHTML = '';
+          var trHTML = '';
           $.each(JSON.parse(data), function (i, item) {
             trHTML += '<tr><td>' + item.studName + '</td><td>' + item.studNum + '</td></tr>';
             app.totalCount = i + 1;
@@ -81,7 +81,7 @@ const app = new Vue({
         data: '',
         success: function(data){
           //create history table here
-          let trHTML = '';
+          var trHTML = '';
           $.each(JSON.parse(data), function (i, item) {
             trHTML += '<tr><th>' + item.name + '</th></tr>';
             $.each(item.users, function (j, newItem) {

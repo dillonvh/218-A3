@@ -1,12 +1,12 @@
-const express = require('express');
-const app = express();
-const http = require('http');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+var express = require('express');
+var app = express();
+// var http = require('http');
+var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 
-const port = process.env.PORT || 26568;
+var port = process.env.PORT || 26568;
 
-const options = {
+var options = {
   dotfiles: 'ignore',
   etag: false,
   extensions: ['htm','html'],
@@ -15,16 +15,17 @@ const options = {
 
 //setup connection
 mongoose.connect("mongodb://assignment3:cmpt218a3@ds123399.mlab.com:23399/a3db");
-const db = mongoose.connection;
+// mongoose.connect("mongodb://vberezny:NgnKc3fn@cmpt218.csil.sfu.ca:24/a3db");
+var db = mongoose.connection;
 
 db.once('open', function(){
   console.log('connection success');
 });
 
 //create Schema
-const Schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
-const checkString = new Schema ({
+var checkString = new Schema ({
   name: String,
   open: Boolean,
   date: { type: Date, default: Date.now },
@@ -32,16 +33,10 @@ const checkString = new Schema ({
 });
 
 //create model
-const CheckIn = mongoose.model('CheckIn', checkString);
+var CheckIn = mongoose.model('CheckIn', checkString);
 
 // app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-//all request below this
-// app.use('/', function(req,res,next){
-//   console.log(req.method, 'request:', req.url, JSON.stringify(req.body));
-//   next();
-// });
 
 app.use('/', express.static('./pub_html', options));
 
@@ -49,7 +44,7 @@ app.use('/', express.static('./pub_html', options));
 app.post('/start', function(req,res){
   console.log('entered /start');
 
-  const check = req.body.string;
+  var check = req.body.string;
   CheckIn.create({name:check, open:true}, function(err){
     if(err) throw(err);
     res.send('Check-in created');
@@ -60,7 +55,7 @@ app.post('/start', function(req,res){
 app.post('/stop', function(req,res){
   console.log('entered /stop');
 
-  const check = req.body.string;
+  var check = req.body.string;
   CheckIn.findOne({'name':check, 'open':true}, function (err, obj) {
     if(err) throw(err);
     obj.open = false;
@@ -74,11 +69,11 @@ app.post('/stop', function(req,res){
 app.post('/check-in', function(req,res){
   console.log('entered /check-in');
 
-  let name = req.body.name;
-  let num = req.body.id;
-  let ustring = req.body.ustring;
+  var name = req.body.name;
+  var num = req.body.id;
+  var ustring = req.body.ustring;
 
-  let user = {studName:name,studNum:num};
+  var user = {studName:name,studNum:num};
 
   CheckIn.findOne({'name':ustring, 'open':true}, function (err, obj) {
     if(err || obj===null){
@@ -101,5 +96,5 @@ app.get('/history', function(req,res){
   });
 });
 
-http.createServer(app).listen(port);
+app.listen(port);
 console.log('running on port',port);
