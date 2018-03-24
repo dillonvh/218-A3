@@ -6,6 +6,7 @@
     <title>218A3</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 <div id="app">
@@ -36,7 +37,7 @@
                     <div>
                         <input type="text" v-model="checkString">
                         <button v-on:click="openCheckin">Start Check-in</button>
-                        <button>View History</button>
+                        <button v-on:click="viewHistory">View History</button>
                     </div>
                 </div>
             </div>
@@ -51,7 +52,7 @@
                 <div>
                     <br>
                     <br>
-                    <button>Stop Check-in</button>
+                    <button v-on:click="stopCheckin">Stop Check-in</button>
                 </div>
             </div>
         </div>
@@ -86,6 +87,25 @@
         <div>
             <h1>Thank you for checking in!</h1>
         </div>
+    </section>
+
+    <section class="bigger" v-if="show == 'stopped'">
+        <div>
+            <h1>Check-in is now over.</h1>
+        </div>
+        <div id="sum">Total Checked-in Users: {{totalCount}}</div>
+        <br>
+        <table id="records">
+            <tr><th>All Checked-in Users</th></tr>
+        </table>
+    </section>
+
+    <section class="bigger" v-if="show == 'history'">
+        <div>
+            <h3>History of all Check-in's</h3>
+        </div>
+        <table id="histTable">
+        </table>
     </section>
 
 </div>

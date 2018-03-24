@@ -7,3 +7,11 @@ var db = mongoose.connection;
 db.once('open', function(){
   console.log('connection success');
 });
+
+const Schema = mongoose.Schema;
+
+const checkString = new Schema ({
+  name: String,
+  date: { type: Date, default: Date.now },
+  users: [{ studName: String, studNum: Number }]
+});

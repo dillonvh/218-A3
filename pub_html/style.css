@@ -25,3 +25,11 @@ section {
     width: 250px;
     padding: 2px;
 }
+
+.bigger {
+    width: 400px;
+}
+
+td {
+    width: 150px;
+}
