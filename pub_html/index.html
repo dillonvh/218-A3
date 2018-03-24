@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>218A3</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+
+    <section v-if="show == 'login'">
+        <div>
+            <h1>ADMIN LOGIN</h1>
+            <div>
+                <div>
+                    <label>Username</label>
+                        <input type="text" v-model="user">
+                    <label>PIN</label>
+                        <input type="password" v-model="PIN">
+                    <br>
+                    <button v-on:click="adminLogin">Login</button>
+                </div>
+            </div>
+            <button v-on:click="studentCheckin">Check-in</button>
+        </div>
+    </section>
+
+    <section v-if="show == 'landing'">
+        <div>
+            <h1>ADMIN LANDING</h1>
+            <div>
+                <div>
+                    <label>Check-in ID</label>
+                    <div>
+                        <input type="text" v-model="checkString">
+                        <button v-on:click="openCheckin">Start Check-in</button>
+                        <button>View History</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section v-if="show == 'checkin-open'">
+        <div>
+            <h1>PLEASE CHECK IN NOW</h1>
+            <p>Check-in ID: {{ checkString }}</p>
+            <div>
+                <div>
+                    <br>
+                    <br>
+                    <button>Stop Check-in</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section v-if="show == 'check-in'">
+        <div>
+            <h1>CHECK-IN</h1>
+            <div>
+                <div>
+                    <label>Check-in String</label>
+                    <div>
+                        <input type="text" v-model="userString">
+                    </div>
+
+                    <label>Full Name</label>
+                    <div>
+                        <input type="text" v-model="name">
+                    </div>
+
+                    <label>Student Number</label>
+                    <div>
+                        <input type="text" v-model="id">
+                    </div>
+                    <button v-on:click="openThankYou">Check-in</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section v-if="show == 'thank-you'">
+        <div>
+            <h1>Thank you for checking in!</h1>
+        </div>
+    </section>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
