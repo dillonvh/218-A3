@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>218A3</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="app">
+
+    <section v-if="show == 'login'">
+        <div>
+            <h1>ADMIN LOGIN</h1>
+            <div>
+                <div>
+                    <label>Username</label>
+                        <input type="text" v-model="user">
+                    <label>PIN</label>
+                        <input type="password" v-model="PIN">
+                    <br>
+                    <button v-on:click="adminLogin">Login</button>
+                </div>
+            </div>
+            <button v-on:click="studentCheckin">Check-in</button>
+        </div>
+    </section>
+
+    <section v-if="show == 'landing'">
+        <div>
+            <h1>ADMIN LANDING</h1>
+            <div>
+                <div>
+                    <label>Check-in ID</label>
+                    <div>
+                        <input type="text" v-model="checkString">
+                        <button v-on:click="openCheckin">Start Check-in</button>
+                        <button v-on:click="viewHistory">View History</button>
+                        <button v-on:click="logout">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section v-if="show == 'checkin-open'">
+        <div>
+            <h1>PLEASE CHECK IN NOW</h1>
+            <p>Check-in ID: {{ checkString }}</p>
+            <div>
+                <div>
+                    <br>
+                    <br>
+                    <button v-on:click="stopCheckin">Stop Check-in</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section v-if="show == 'check-in'">
+        <div>
+            <h1>CHECK-IN</h1>
+            <div>
+                <div>
+                    <label>Check-in String</label>
+                    <div>
+                        <input type="text" v-model="userString">
+                    </div>
+
+                    <label>Full Name</label>
+                    <div>
+                        <input type="text" v-model="name">
+                    </div>
+
+                    <label>Student Number</label>
+                    <div>
+                        <input type="text" v-model="id">
+                    </div>
+                    <button v-on:click="openThankYou">Check-in</button>
+                    <button v-on:click="logout">Back to Login</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section v-if="show == 'thank-you'">
+        <div>
+            <h1>Thank you for checking in!</h1>
+        </div>
+        <div>
+            <button v-on:click="logout">Back to Login</button>
+            <button v-on:click="studentCheckin">Back to Check-in</button>
+        </div>
+    </section>
+
+    <section class="bigger" v-if="show == 'stopped'">
+        <div>
+            <h1>Check-in is now over.</h1>
+        </div>
+        <button v-on:click="backLanding">Back to Landing</button>
+        <div id="sum">Total Checked-in Users: {{totalCount}}</div>
+        <br>
+        <table id="records">
+            <tr><th align="left">Users</th></tr>
+        </table>
+    </section>
+
+    <section class="bigger" v-if="show == 'history'">
+        <div>
+            <h3>History of all Check-in's</h3>
+        </div>
+        <button v-on:click="backLanding">Back to Landing</button>
+        <table id="histTable">
+        </table>
+    </section>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>

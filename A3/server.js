@@ -14,8 +14,8 @@ var options = {
 };
 
 //setup connection
-// mongoose.connect("mongodb://assignment3:cmpt218a3@ds123399.mlab.com:23399/a3db");
-mongoose.connect("mongodb://vberezny:NgnKc3fn@127.0.0.1:27017/cmpt218_vberezny?authSource=admin");
+mongoose.connect("mongodb://assignment3:cmpt218a3@ds123399.mlab.com:23399/a3db");
+// mongoose.connect("mongodb://vberezny:NgnKc3fn@cmpt218.csil.sfu.ca:24/cmpt218_vberezny");
 var db = mongoose.connection;
 
 db.once('open', function(){
