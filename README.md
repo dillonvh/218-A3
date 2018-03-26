@@ -1,14 +1,24 @@
-# 218-A3
-To run locally;
+# Event Check-in
+#### CMPT 218 Assignment 3
 
-npm install
+## Quickstart
 
-node server.js
+### Download and Install Dependencies
+`git clone https://github.com/vberezny/218-A3`  
+`npm install`
 
-Additional Notes:
+### Run Server
+`npm start`
 
-UPDATE: mongo connection in csil now works, in addition the url now works as well, leaving the below notes for now in case something breaks again for whatever reason
 
--I was unable to connect to the csil mongo db so I used mlab instead. Inside server.js you can find the commented out string I used to attempt to connect to the csil mongo server.
+## Description
+A simple event check-in application. Event organizers can open "checkins" for attendees to sign-in.
 
--As of right now, I am having issues with viewing my app on http://www.cmpt218.csil.sfu.ca:26568, however, everything runs locally with no issues. I am in contact with help desk working to resolve the issues that prevent my app from running at the url.
+## Instructions
+- a user will either be an admin or an attendee
+  - admins can sign in to:
+    - initiate checkins
+      - upon closing a checkin session, all checked-in attendees will be listed
+    - view checkin history
+  - attendees can check-in to an event if it is open
+
